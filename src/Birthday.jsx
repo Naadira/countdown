@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Countdown from './Countdown';
-import githubLogo from './githubLogo.svg';
-import { Link } from 'react-router-dom';
+// import githubLogo from './githubLogo.svg';
+// import { Link } from 'react-router-dom';
 
 const Birthday = ({ name, day, month }) => {
   // useState Hooks
@@ -15,9 +15,9 @@ const Birthday = ({ name, day, month }) => {
 
   if (name === undefined || day === undefined || month === undefined) {
     // This is if not enough params are provided
-    name = 'HR'; // Name of the Person
+    name = 'my Irfee'; // Name of the Person
     month = 10; // Month of the Birthday
-    day = 21; // Day of the Birthday
+    day = 25; // Day of the Birthday
   }
 
   // get current time
@@ -32,58 +32,64 @@ const Birthday = ({ name, day, month }) => {
     currentTime.getDate() === day && currentTime.getMonth() === month - 1;
 
   useEffect(() => {
-    setInterval(() => {
-      const countdown = () => {
-        // Getting the Current Date
-        const dateAtm = new Date();
+  const interval = setInterval(() => {
+    const now = new Date();
+    let birthdayDate = new Date(currentYear, month - 1, day);
 
-        // if the Birthday has passed
-        // then set the Birthday countdown for next year
-        let birthdayDay = new Date(currentYear, month - 1, day);
-        if (dateAtm > birthdayDay) {
-          birthdayDay = new Date(currentYear + 1, month - 1, day);
-        } else if (dateAtm.getFullYear() === birthdayDay.getFullYear() + 1) {
-          birthdayDay = new Date(currentYear, month - 1, day);
-        }
+    // Check if today is the birthday
+    if (
+      now.getDate() === birthdayDate.getDate() &&
+      now.getMonth() === birthdayDate.getMonth()
+    ) {
+      setState((prev) => ({
+        ...prev,
+        isItBday: true,
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+      }));
+      clearInterval(interval); // Stop the counter
+      return;
+    }
 
-        // Getitng Current Time
-        const currentTime = dateAtm.getTime();
-        // Getting Birthdays Time
-        const birthdayTime = birthdayDay.getTime();
+    // If birthday has passed for this year, keep countdown static (optional)
+    if (now > birthdayDate) {
+      setState((prev) => ({
+        ...prev,
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+      }));
+      clearInterval(interval);
+      return;
+    }
 
-        // Time remaining for the Birthday
-        const timeRemaining = birthdayTime - currentTime;
+    // Countdown calculation
+    const timeRemaining = birthdayDate.getTime() - now.getTime();
 
-        let seconds = Math.floor(timeRemaining / 1000);
-        let minutes = Math.floor(seconds / 60);
-        let hours = Math.floor(minutes / 60);
-        let days = Math.floor(hours / 24);
+    let seconds = Math.floor(timeRemaining / 1000);
+    let minutes = Math.floor(seconds / 60);
+    let hours = Math.floor(minutes / 60);
+    let days = Math.floor(hours / 24);
 
-        seconds %= 60;
-        minutes %= 60;
-        hours %= 24;
+    seconds %= 60;
+    minutes %= 60;
+    hours %= 24;
 
-        // Setting States
-        setState((prevState) => ({
-          ...prevState,
-          seconds,
-          minutes,
-          hours,
-          days,
-          isItBday,
-        }));
-        // console.log(`${days}:${hours}:${minutes}:${seconds} , ${isItBday}`);
-      };
-      if (!isItBday) {
-        countdown();
-      } else {
-        setState((prevState) => ({
-          ...prevState,
-          isItBday: true,
-        }));
-      }
-    }, 1000);
-  }, [currentYear, day, isItBday, month]);
+    setState((prev) => ({
+      ...prev,
+      seconds,
+      minutes,
+      hours,
+      days,
+    }));
+  }, 1000);
+
+  return () => clearInterval(interval); // Cleanup
+}, [currentYear, day, month]);
+
 
   let birth = new Date(currentYear, month - 1, day);
   const monthNames = [
@@ -110,12 +116,7 @@ const Birthday = ({ name, day, month }) => {
           <div className='birthdate'>
             Birth-Date: {day} {monthBday} {currentYear}
           </div>
-          <div className='credits'>
-            <a href='https://github.com/Deep-Codes'>
-              <img src={githubLogo} alt='Github-Logo' className='github-logo' />
-            </a>
-          </div>
-          <Link to='/generate'>Generate Here</Link>
+          
         </>
       )}
     </div>
