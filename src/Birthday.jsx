@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Countdown from './Countdown';
-// import githubLogo from './githubLogo.svg';
-// import { Link } from 'react-router-dom';
 
 const Birthday = ({ name, day, month }) => {
-  // useState Hooks
   const [state, setState] = useState({
     seconds: 0,
     hours: 0,
@@ -14,111 +11,95 @@ const Birthday = ({ name, day, month }) => {
   });
 
   if (name === undefined || day === undefined || month === undefined) {
-    // This is if not enough params are provided
-    name = 'my Irfee'; // Name of the Person
-    month = 10; // Month of the Birthday
-    day = 26; // Day of the Birthday
+    name = 'My Irfee';
+    month = 10;
+    day = 26;
   }
 
-  // get current time
   const currentTime = new Date();
-  // get current year
   const currentYear = currentTime.getFullYear();
 
-  // Getting the Birthday in Data Object
-  // WE subtract 1 from momnth ; Months start from 0 in Date Object
-  // Bithday Boolean
-  const isItBday =
-    currentTime.getDate() === day && currentTime.getMonth() === month - 1;
-
   useEffect(() => {
-  const interval = setInterval(() => {
-    const now = new Date();
-    let birthdayDate = new Date(currentYear, month - 1, day);
+    const interval = setInterval(() => {
+      const now = new Date();
+      let birthdayDate = new Date(currentYear, month - 1, day);
 
-    // Check if today is the birthday
-    if (
-      now.getDate() === birthdayDate.getDate() &&
-      now.getMonth() === birthdayDate.getMonth()
-    ) {
-      setState((prev) => ({
-        ...prev,
-        isItBday: true,
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-      }));
-      clearInterval(interval); // Stop the counter
-      return;
-    }
+      // Check if it's birthday
+      if (
+        now.getDate() === birthdayDate.getDate() &&
+        now.getMonth() === birthdayDate.getMonth()
+      ) {
+        setState({
+          seconds: 0,
+          hours: 0,
+          minutes: 0,
+          days: 0,
+          isItBday: true,
+        });
+        clearInterval(interval);
+        return;
+      }
 
-    // If birthday has passed for this year, keep countdown static (optional)
-    if (now > birthdayDate) {
-      setState((prev) => ({
-        ...prev,
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-      }));
-      clearInterval(interval);
-      return;
-    }
+      // Countdown
+      const timeRemaining = birthdayDate.getTime() - now.getTime();
+      if (timeRemaining <= 0) {
+        setState({
+          seconds: 0,
+          hours: 0,
+          minutes: 0,
+          days: 0,
+          isItBday: true,
+        });
+        clearInterval(interval);
+        return;
+      }
 
-    // Countdown calculation
-    const timeRemaining = birthdayDate.getTime() - now.getTime();
+      let seconds = Math.floor(timeRemaining / 1000);
+      let minutes = Math.floor(seconds / 60);
+      let hours = Math.floor(minutes / 60);
+      let days = Math.floor(hours / 24);
 
-    let seconds = Math.floor(timeRemaining / 1000);
-    let minutes = Math.floor(seconds / 60);
-    let hours = Math.floor(minutes / 60);
-    let days = Math.floor(hours / 24);
+      seconds %= 60;
+      minutes %= 60;
+      hours %= 24;
 
-    seconds %= 60;
-    minutes %= 60;
-    hours %= 24;
+      setState({
+        seconds,
+        minutes,
+        hours,
+        days,
+        isItBday: false,
+      });
+    }, 1000);
 
-    setState((prev) => ({
-      ...prev,
-      seconds,
-      minutes,
-      hours,
-      days,
-    }));
-  }, 1000);
+    return () => clearInterval(interval);
+  }, [currentYear, day, month]);
 
-  return () => clearInterval(interval); // Cleanup
-}, [currentYear, day, month]);
+  // const monthNames = [
+  //   'January',
+  //   'February',
+  //   'March',
+  //   'April',
+  //   'May',
+  //   'June',
+  //   'July',
+  //   'August',
+  //   'September',
+  //   'October',
+  //   'November',
+  //   'December',
+  // ];
 
-
-  let birth = new Date(currentYear, month - 1, day);
-  const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-  let monthBday = monthNames[birth.getMonth()];
+  // const birth = new Date(currentYear, month - 1, day);
+  // const monthBday = monthNames[birth.getMonth()];
 
   return (
-    <div className='page'>
+    <div className="page">
+      {/* Show countdown or wish dynamically */}
       <Countdown countdownData={state} name={name} />
-      {!isItBday && (
-        <>
-          <div className='birthdate'>
-            Birth-Date: {day} {monthBday} {currentYear}
-          </div>
-          
-        </>
-      )}
+
+      {/* Only show birthdate if it's not birthday */}
+    
     </div>
   );
 };
