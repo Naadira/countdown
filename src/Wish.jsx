@@ -39,10 +39,10 @@ January 11, 2025 – Brother’s haldi 💛
 Didn’t see you much that day, but when you crossed me, I felt something again. You didn’t notice, but I did 🥹
 
 January 12, 2025 – Brother’s wedding 💐
-I came around just hoping to see you… and yeah, I did, many times. Each glimpse made my heart flutter 💞
+I never thought I would actually see you, but somehow I did — not just once, but multiple times. Every single glimpse made my heart flutter💞 I even saw you taking photos with your family… you looked so happy, and it was such a beautiful sight to see.
 
 May 25, 2025 – When your father passed away 💔
-When I heard the news, my heart broke. I badly wanted to talk to you, to console you, to be with you, but I didn’t know how to reach you. So I started writing messages which I could never send — instead, I conveyed them through snaps and I can understand that you weren’t in a state to read them. They became my own silent prayers for your strength 🙏 I knew you were shattered, so I just prayed to Allah to give you peace and courage.
+When I heard the news, I really wanted to talk to you, to comfort you, to be by your side — but I didn’t know how to reach you. So I started writing messages which I could never send — instead, I conveyed them through snaps and I can understand that you weren’t in a state to read them. They became my own silent prayers for your strength 🙏 I knew you were shattered, so I just prayed to Allah to give you peace and courage.
 
 June 7, 2025 – Bakrid 🌙
 My first ever message to you — “Eid Mubarak.” Honestly, I texted just to talk to you, expecting nothing in return. But to my surprise, you replied. U did it just for courtesy, but for me, it felt like a small miracle 💫
@@ -83,6 +83,8 @@ Even a small message from you makes my day brighter ☀️
 I don’t want any toxic sort of bonding, just something pure, kind, and honest bonding between us💖
 
 I know we both are busy with our jobs, but even those few minutes we talk — they are the happiest moments for me 🥰
+
+And one more thing… every time we fight, the way you handle things and bring me back feels so special. I used to think you might leave me, but you always choose to hold me with your words instead. Just don’t use harsh or bad words with me — they hurt me more than you think 💔
 
 This is everything I wanted to tell you… maybe I forgot a few things, but I have written it all straight from my heart 💌
 

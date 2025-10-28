@@ -13,7 +13,7 @@ const Birthday = ({ name, day, month }) => {
   if (name === undefined || day === undefined || month === undefined) {
     name = 'My Irfee';
     month = 10;
-    day = 26;
+    day = 4;
   }
 
   const currentTime = new Date();
