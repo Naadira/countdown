@@ -12,7 +12,7 @@ const Birthday = ({ name, day, month }) => {
 
   if (name === undefined || day === undefined || month === undefined) {
     name = 'My Irfee';
-    month = 10;
+    month = 11;
     day = 4;
   }
 
